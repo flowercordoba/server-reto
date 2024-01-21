@@ -36,11 +36,11 @@ export class TaskController {
     const { page = 1, limit = 10 } = req.query;
     const [ error, paginationDto ] = PaginationDto.create( +page, +limit );
     if ( error ) return res.status(400).json({ error });
-    return res.json('getTasks')
+    // return res.json('getTasks')
 
-    // this.taskService.getTasks( paginationDto! )
-    //   .then( tasks => res.json( tasks )) 
-    //   .catch( error => this.handleError( error, res ) );
+    this.taskService.getTasks( paginationDto! )
+      .then( tasks => res.json( tasks )) 
+      .catch( error => this.handleError( error, res ) );
   };
 
   getCompletedTasksByPriority = async (req: Request, res: Response) => {
