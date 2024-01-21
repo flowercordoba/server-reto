@@ -3,23 +3,26 @@ import {Request,Response} from 'express'
 export class Task{
     constructor(){}
 
-    Create =(req:Request,res:Response)=>{
+    Create =async(req:Request,res:Response)=>{
         res.json('create')
     }
-    Read =(req:Request,res:Response)=>{
+    Read =async(req:Request,res:Response)=>{
         res.json('read')
     }
-    Edit =(req:Request,res:Response)=>{
+    GetTask =async(req:Request,res:Response)=>{
+        res.json('GetTask')
+    }
+    Edit =async(req:Request,res:Response)=>{
         res.json('edit')
     }
-    Delete =(req:Request,res:Response)=>{
+    Delete =async(req:Request,res:Response)=>{
         res.json('delete')
     }
 // status
-    Completed =(req:Request,res:Response)=>{
+    Completed =async(req:Request,res:Response)=>{
         res.json('Completed')
     }
-    Process =(req:Request,res:Response)=>{
+    Process =async(req:Request,res:Response)=>{
         res.json('Process')
     }
 

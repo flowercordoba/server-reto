@@ -14,6 +14,7 @@ export class CategorieRoutes {
 
     router.post('/create',  controller.Create);
     router.get('/read/:id',  controller.Read);
+    router.get('/read',  controller.getCategories);
     router.post('/update/:id',    controller.Edit);
     router.delete('/detele/:id',   controller.Delete );
     return router;

@@ -14,6 +14,7 @@ export class TaskRoutes {
 
     router.post('/create',  controller.Create);
     router.get('/read/:id',  controller.Read);
+    router.get('/read',  controller.GetTask);
     router.post('/update/:id',    controller.Edit);
     router.delete('/detele/:id',   controller.Delete );
 

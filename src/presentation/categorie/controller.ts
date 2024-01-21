@@ -1,18 +1,37 @@
 import {Request,Response} from 'express'
+import { CustonError } from '../../shared';
+import { CreateCategoryDto, UpdateCategoryDto } from '../../domain';
 
 export class Categorie{
     constructor(){}
 
-    Create =(req:Request,res:Response)=>{
-        res.json('create')
+
+    private handleError = (error: unknown, res: Response ) => {
+        if ( error instanceof CustonError ) {
+          return res.status(error.statusCode).json({ error: error.message });
+        }
+    
+        console.log(`${ error }`);
+        return res.status(500).json({ error: 'Internal server error' })
+      } 
+
+    Create = async( req:Request,res:Response)=>{
+        const [error, createCategorieDto] = CreateCategoryDto.create(req.body);
+        if(error) return res.status(400).json({error})
+        res.json(createCategorieDto)
     }
-    Read =(req:Request,res:Response)=>{
+    Read =async(req:Request,res:Response)=>{
         res.json('read')
     }
-    Edit =(req:Request,res:Response)=>{
-        res.json('edit')
+    getCategories =async(req:Request,res:Response)=>{
+        res.json('getCategories')
     }
-    Delete =(req:Request,res:Response)=>{
+    Edit =async(req:Request,res:Response)=>{
+        const [error, updateCategorieDto] = UpdateCategoryDto.create(req.body);
+        if(error) return res.status(400).json({error})
+        res.json(updateCategorieDto)
+    }
+    Delete =async(req:Request,res:Response)=>{
         res.json('delete')
     }
 

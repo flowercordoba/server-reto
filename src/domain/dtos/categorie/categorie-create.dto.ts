@@ -2,7 +2,7 @@
 
 
 
-export class TaskDto {
+export class CreateCategoryDto {
 
     private constructor(
       public readonly name: string,
@@ -10,7 +10,7 @@ export class TaskDto {
     ) {}
   
   
-    static create( object: { [key: string]: any } ):[string?, TaskDto?] {
+    static create( object: { [key: string]: any } ):[string?, CreateCategoryDto?] {
   
       const { name, available = false } = object;
       let availableBoolean = available;
@@ -20,7 +20,7 @@ export class TaskDto {
         availableBoolean = ( available === 'true' )
       }
   
-      return [undefined, new TaskDto(name, availableBoolean)];
+      return [undefined, new CreateCategoryDto(name, availableBoolean)];
   
     }
   
