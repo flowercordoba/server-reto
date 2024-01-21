@@ -4,7 +4,7 @@ import { Task } from './controller';
 
 
 
-export class AuthRoutes {
+export class TaskRoutes {
 
 
   static get routes(): Router {
@@ -14,8 +14,15 @@ export class AuthRoutes {
 
     router.post('/create',  controller.Create);
     router.get('/read/:id',  controller.Read);
-    router.post('/update',    controller.Edit);
-    router.delete('/detele',   controller.Delete );
+    router.post('/update/:id',    controller.Edit);
+    router.delete('/detele/:id',   controller.Delete );
+
+    // routes status
+
+    router.get('/status/completed',  controller.Completed);
+    router.get('/status/process',  controller.Process);
+
+
 
 
 

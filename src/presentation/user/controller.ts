@@ -1,19 +1,15 @@
 import {Request,Response} from 'express'
 
-export class Auth{
+export class UserController{
     constructor(){
 
     }
 
-    registerCTRL =(req:Request,res:Response)=>{
-        res.json('registerCTRL')
+    Update =(req:Request,res:Response)=>{
+        res.json('Update')
     }
-    loginCTRL =(req:Request,res:Response)=>{
-        res.json('loginCTRL')
+    Read =(req:Request,res:Response)=>{
+        res.json('Update')
     }
-
- 
-    emailValidate =(req:Request,res:Response)=>{
-        res.json('EmailValidate')
-    }
+    
 }

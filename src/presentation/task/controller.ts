@@ -15,6 +15,17 @@ export class Task{
     Delete =(req:Request,res:Response)=>{
         res.json('delete')
     }
+// status
+    Completed =(req:Request,res:Response)=>{
+        res.json('Completed')
+    }
+    Process =(req:Request,res:Response)=>{
+        res.json('Process')
+    }
+
+
+
+
 
     
 

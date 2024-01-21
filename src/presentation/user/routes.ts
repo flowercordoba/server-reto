@@ -1,23 +1,19 @@
 import { Router } from 'express';
-import { Auth } from './controller';
+import { UserController } from './controller';
 
 
 
 
-export class AuthRoutes {
+export class UserRoutes {
 
 
   static get routes(): Router {
 
     const router = Router();
-    const controller = new Auth()
+    const controller = new UserController()
 
-    router.post('/login',  controller.loginCTRL);
-    router.post('/register',    controller.registerCTRL);
-    router.get('/validate-email/:token',   controller.emailValidate );
-
-
-
+    router.get('/read/:id',  controller.Read);
+    router.post('/update',    controller.Update);
     return router;
   }
 
