@@ -1,10 +1,7 @@
-import { Request, Response } from "express";
-import { CategoryService, CustonError } from "../../shared";
-import {
-  CreateCategoryDto,
-  PaginationDto,
-  UpdateCategoryDto,
-} from "../../domain";
+import { Request, Response } from 'express';
+
+import { CategoryService, CustonError } from '../../shared';
+import { CreateCategoryDto, PaginationDto, UpdateCategoryDto } from '../../domain';
 
 export class Categorie {
   constructor(private readonly categoryService: CategoryService) {}
@@ -14,12 +11,14 @@ export class Categorie {
     }
 
     console.log(`${error}`);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: 'Internal server error' });
   };
 
   Create = async (req: Request, res: Response) => {
     const [error, createCategorieDto] = CreateCategoryDto.create(req.body);
-    if (error) return res.status(400).json({ error });
+    if (error) {
+      return res.status(400).json({ error });
+    }
     this.categoryService
       .createCategory(createCategorieDto!, req.body.user)
       .then((category) => res.status(201).json(category))
@@ -32,7 +31,7 @@ export class Categorie {
 
       const category = await this.categoryService.getCategoryById(categoryId);
       if (!category) {
-        return res.status(404).json({ error: "Category not found" });
+        return res.status(404).json({ error: 'Category not found' });
       }
 
       // Retorna la categoría encontrada y el usuario que la creó.
@@ -44,7 +43,9 @@ export class Categorie {
   getCategories = async (req: Request, res: Response) => {
     const { page = 1, limit = 10 } = req.query;
     const [error, paginationDto] = PaginationDto.create(+page, +limit);
-    if (error) return res.status(400).json({ error });
+    if (error) {
+      return res.status(400).json({ error });
+    }
 
     this.categoryService
       .getCategories(paginationDto!)

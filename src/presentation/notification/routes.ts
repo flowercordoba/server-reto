@@ -1,23 +1,20 @@
 import { Router } from 'express';
-import { Notification } from './controller';
 
+import { NotificationService } from '../../shared';
 
-
+import { NotificationController } from './controller';
 
 export class NotificationRoutes {
-
-
   static get routes(): Router {
-
     const router = Router();
-    const controller = new Notification()
+    const notificationService = new NotificationService();
 
-    router.get('/read/:id',  controller.Read);
-    router.get('/read',    controller.ReadAll);
-    router.delete('/detele/:id',   controller.Delete );
+    const controller = new NotificationController(notificationService);
+
+    router.post('/notifications', controller.createNotification);
+    router.get('/notifications/user/:userId', controller.getUserNotifications);
+    router.put('/notifications/:notificationId/read', controller.markNotificationAsRead);
+
     return router;
   }
-
-
 }
-

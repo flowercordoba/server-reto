@@ -1,5 +1,7 @@
-import express, { Router } from 'express';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import path from 'path';
+
+import express, { Router } from 'express';
 
 interface Options {
   port: number;
@@ -22,7 +24,6 @@ export class Server {
     this.publicPath = public_path;
     this.routes = routes;
   }
-
   
   
   async start() {
@@ -39,8 +40,8 @@ export class Server {
     this.app.use( this.routes );
 
     //* SPA /^\/(?!api).*/  <== Únicamente si no empieza con la palabra api
-    this.app.get('*', (req, res) => {
-      const indexPath = path.join( __dirname + `../../../${ this.publicPath }/index.html` );
+    this.app.get('*', (_req, res) => {
+      const indexPath = path.join( `${__dirname  }../../../${ this.publicPath }/index.html` );
       res.sendFile(indexPath);
     });
     

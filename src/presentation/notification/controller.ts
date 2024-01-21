@@ -1,18 +1,43 @@
-import {Request,Response} from 'express'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Request, Response } from 'express';
 
-export class Notification{
-    constructor(){}
+import { NotificationService } from '../../shared/services/notification.service';
 
-   
-    ReadAll =(req:Request,res:Response)=>{
-        res.json('ReadAll')
+export class NotificationController {
+  notificationService: any;
+  constructor(notificationService: any) {
+    this.notificationService = notificationService;
+  }
+
+  async createNotification(req: Request, res: Response) {
+    try {
+      const { id, message } = req.body;
+      const notification = await this.notificationService.createNotification(id, message);
+      res.status(201).json(notification);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-    
-    Read =(req:Request,res:Response)=>{
-        res.json('Read')
+  }
+
+  async getUserNotifications(req: Request, res: Response) {
+    try {
+      const userId = req.params.userId;
+      const notifications = await this.notificationService.getUserNotifications(userId);
+      res.status(200).json(notifications);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-    Delete =(req:Request,res:Response)=>{
-        res.json('delete')
+  }
+
+  async markNotificationAsRead(req: Request, res: Response) {
+    try {
+      const notificationId = req.params.notificationId;
+      const notification = await this.notificationService.markNotificationAsRead(notificationId);
+      res.status(200).json(notification);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-    
+  }
 }
+
+export default new NotificationController(NotificationService);

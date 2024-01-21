@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserModel } from '../../data';
+
 import { UserEntity } from '../../domain';
 import { JwtAdapter } from '../../config/jwt.adapter';
+import { UserModel } from '../../data/mongo';
 
 /**
  * AuthMiddleware contiene métodos para manejar la autenticación en la aplicación.
  */
 export class AuthMiddleware {
-
   /**
    * Valida el token JWT presente en la solicitud.
    *
@@ -34,7 +34,7 @@ export class AuthMiddleware {
       if (!payload) {
         return res.status(401).json({ error: 'Invalid token' });
       }
-      
+
       // Busca el usuario asociado al token
       const user = await UserModel.findById(payload.id);
       if (!user) {
@@ -46,7 +46,6 @@ export class AuthMiddleware {
 
       // Continúa con el siguiente middleware en la cadena
       next();
-
     } catch (error) {
       // Maneja cualquier error durante la validación del token
       console.log(error);

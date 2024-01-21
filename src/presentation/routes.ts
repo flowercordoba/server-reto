@@ -1,10 +1,12 @@
 import { Router } from 'express';
+
+import { AuthMiddleware } from '../shared/middlewares/auth.middleware';
+
 import { Authroutes } from './auth/routes';
 import { UserRoutes } from './user/routes';
 import { TaskRoutes } from './task/routes';
 import { CategorieRoutes } from './categorie/routes';
 import { NotificationRoutes } from './notification/routes';
-import { AuthMiddleware } from '../shared/middlewares/auth.middleware';
 
 export class AppRoutes {
   static get routes(): Router {
@@ -19,4 +21,3 @@ export class AppRoutes {
   
   
 }
-

@@ -1,34 +1,34 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 const notificationSchema = new mongoose.Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: true
   },
   message: {
     type: String,
-    required: true,
+    required: true
   },
   type: {
     type: String,
     required: true,
-    enum: ['TaskCompleted', 'TaskRejected', 'TaskInProgress'], 
+    enum: ['TaskCompleted', 'TaskRejected', 'TaskInProgress']
   },
   read: {
     type: Boolean,
-    default: false,
+    default: false
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
   taskId: {
     type: Schema.Types.ObjectId,
     ref: 'Task',
-    required: false, 
+    required: false
   }
 });
 
-const Notification = mongoose.model('Notification', notificationSchema);
-export default Notification;
+const NotificationModel = mongoose.model('Notification', notificationSchema);
+export default NotificationModel;

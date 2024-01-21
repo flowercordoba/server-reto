@@ -1,5 +1,5 @@
 import { envs } from './config/envs';
-import { MongoDatabase } from './data';
+import { MongoDatabase } from './data/mongo';
 import { AppRoutes } from './presentation/routes';
 import { Server } from './presentation/server';
 
@@ -15,7 +15,7 @@ async function main() {
     dbName:envs.DB_NAME,
     mongoUri:envs.URI_MONGO
 
-  })
+  });
 
   const server = new Server({
     port: envs.PORT,

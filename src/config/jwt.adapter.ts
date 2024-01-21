@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import jwt from 'jsonwebtoken';
+
 import { envs } from './envs';
 
 const JWT_SEED = envs.JWT_SEED;
@@ -7,7 +9,6 @@ const JWT_SEED = envs.JWT_SEED;
  * JwtAdapter es una clase que proporciona métodos estáticos para generar y validar tokens JWT.
  */
 export class JwtAdapter {
-
   /**
    * Genera un token JWT basado en un payload y un período de validez.
    *

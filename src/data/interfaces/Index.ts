@@ -1,5 +1,4 @@
-export interface Options{
-   mongoUri:string;
-   dbName:string
+export interface Options {
+  mongoUri: string;
+  dbName: string;
 }
-
