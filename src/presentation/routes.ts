@@ -7,6 +7,7 @@ import { UserRoutes } from './user/routes';
 import { TaskRoutes } from './task/routes';
 import { CategorieRoutes } from './categorie/routes';
 import { NotificationRoutes } from './notification/routes';
+import { GitRoutes } from './github/routes';
 
 export class AppRoutes {
   static get routes(): Router {
@@ -16,8 +17,9 @@ export class AppRoutes {
     router.use('/api/task', [AuthMiddleware.validateJWT],TaskRoutes.routes );
     router.use('/api/categorie',[AuthMiddleware.validateJWT], CategorieRoutes.routes );
     router.use('/api/notification',[AuthMiddleware.validateJWT], NotificationRoutes.routes );
+    router.use('/api/', GitRoutes.routes );
     return router;
   }
-  
-  
+
+
 }

@@ -15,5 +15,8 @@ export const envs = {
   SECRET_KEY_ONE: get('SECRET_KEY_ONE').required().asString(),
   SECRET_KEY_TWO: get('SECRET_KEY_TWO').required().asString(),
   NODE_ENV: get('NODE_ENV').required().asString(),
-  CLIENT_URL: get('CLIENT_URL').required().asString()
+  CLIENT_URL: get('CLIENT_URL').required().asString(),
+  DISCORD_WEBHOOK_URL: get('DISCORD_WEBHOOK_URL').required().asString()
 };
+
+

@@ -1,3 +1,7 @@
+import express from 'express';
+import cors from 'cors';
+
+
 import { envs } from './config/envs';
 import { MongoDatabase } from './data/mongo';
 import { AppRoutes } from './presentation/routes';
@@ -16,6 +20,18 @@ async function main() {
     mongoUri:envs.URI_MONGO
 
   });
+
+  const app = express();
+
+  app.use(cors({
+    origin: envs.CLIENT_URL,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  }));
+
+
+  app.use( express.json() );
+
 
   const server = new Server({
     port: envs.PORT,
