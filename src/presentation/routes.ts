@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { AuthRoutes } from './controllers/routes';
+import { AuthRoutes } from './auth/routes';
 
 
 
