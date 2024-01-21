@@ -19,6 +19,15 @@ const taskSchema = new mongoose.Schema({
   completedAt: {
     type: Date,
   },
+  dueDate: {
+    type: Date,
+    
+  },
+  priority: {
+    type: String,
+    enum: ['alta', 'media', 'baja'],
+    default: 'media', 
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -28,7 +37,11 @@ const taskSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
-  }
+  },
+  assignedUsers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
 });
 
 export const TaskModel = mongoose.model('Task', taskSchema);
