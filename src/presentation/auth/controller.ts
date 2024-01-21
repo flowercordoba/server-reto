@@ -2,6 +2,7 @@ import {Request,Response} from 'express'
 import { RegisterUserDto } from '../../domain/dtos/auth/register-user.dto'
 import { AuthService } from '../../shared/services/auth.service';
 import { CustonError } from '../../shared';
+import { LoginUserDto } from '../../domain';
 
 export class Auth{
     constructor( public readonly authService: AuthService,){}
@@ -25,7 +26,13 @@ export class Auth{
           .catch( error => this.handleError(error, res) );
     }
     loginCTRL =(req:Request,res:Response)=>{
-        res.json('loginCTRL')
+      const [error, loginUserDto] = LoginUserDto.create(req.body);
+      if ( error ) return res.status(400).json({error})
+  
+  
+      this.authService.loginUser(loginUserDto!)
+        .then( (user) => res.json(user) )
+        .catch( error => this.handleError(error, res) );
     }
 
  
