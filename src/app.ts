@@ -3,7 +3,7 @@ import { MongoDatabase } from './data/mongo';
 import { AppRoutes } from './presentation/routes';
 import { Server } from './presentation/server';
 
-
+// funtion anonim auto invocate
 (async()=> {
   main();
 })();
